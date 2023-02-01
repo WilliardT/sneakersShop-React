@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Drawer from "./components/Drawer";
-import Header from "./components/Header";
-import "./index.scss";
-import axios from "axios";
 import { Route } from "react-router-dom";
+import axios from "axios";
+import Header from "./components/Header";
+import Drawer from "./components/Drawer";
+import "./index.scss";
+import AppContext from "./context";
+
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 
@@ -21,21 +23,24 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const cartResponse = await axios.get(
-        "https://637895780992902a251de4f4.mockapi.io/cart"
-      );
-      const favoriteResponse = await axios.get(
-        "https://637895780992902a251de4f4.mockapi.io/favorite"
-      );
-      const itemsResponse = await axios.get(
-        "https://637895780992902a251de4f4.mockapi.io/items"
-      );
+      try {
+        const [cartResponse, favoriteResponse, itemsResponse] =
+          await Promise.all([
+            axios.get("https://637895780992902a251de4f4.mockapi.io/cart"),
+            axios.get("https://637895780992902a251de4f4.mockapi.io/favorite"),
+            axios.get("https://637895780992902a251de4f4.mockapi.io/items"),
+          ]);
 
-      setIsLoading(false);
-      setCartItems(cartResponse.data);
-      setFavorites(favoriteResponse.data);
-      setItems(itemsResponse.data);
+        setIsLoading(false);
+        setCartItems(cartResponse.data);
+        setFavorites(favoriteResponse.data);
+        setItems(itemsResponse.data);
+      } catch (error) {
+        alert("Ошибка при запросе данных");
+        console.error(error);
+      }
     }
+
     fetchData();
   }, []);
 
@@ -93,7 +98,18 @@ function App() {
   };
 
   return (
-    <AppContext.Provider value={{ items, cartIterms, favorites, isItemAdded }}>
+    <AppContext.Provider
+      value={{
+        items,
+        cartIterms,
+        favorites,
+        isItemAdded,
+        onAddToFavorite,
+        onAddToCart,
+        setCartOpened,
+        setCartItems,
+      }}
+    >
       <div className="wrapper">
         {cartOpened && (
           <Drawer

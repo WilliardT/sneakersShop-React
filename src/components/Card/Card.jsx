@@ -1,17 +1,18 @@
 import React, { useState, useContext } from "react";
-import cssCard from "./Card.module.scss";
 import ContentLoader from "react-content-loader";
+
 import { AppContext } from "../../App";
+
+import cssCard from "./Card.module.scss";
 
 function Card({
   id,
-  imageUrl,
   title,
+  imageUrl,
   price,
+  onFavorite,
   onPlus,
-  onClickFavorite,
   favorited = false,
-  added = false,
   loading = false,
 }) {
   const { isItemAdded } = useContext(AppContext);
@@ -23,7 +24,7 @@ function Card({
   };
 
   const onClickFavoriteItems = () => {
-    onClickFavorite({ id, imageUrl, title, price });
+    onFavorite({ id, imageUrl, title, price });
     setIsFavorite(!isFavorite);
   };
 

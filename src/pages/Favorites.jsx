@@ -1,10 +1,9 @@
 import React from "react";
 import Card from "../components/Card/Card";
-import { AppContext } from "../App";
+import AppContext from "../context";
 
-function Favorites({ onAddtoFavorite }) {
-  const state = React.useContext(AppContext);
-
+function Favorites() {
+  const { favorites, onAddtoFavorite } = React.useContext(AppContext);
 
   return (
     <div className="content">
@@ -12,11 +11,11 @@ function Favorites({ onAddtoFavorite }) {
         <h1>Мои закладки</h1>
       </div>
       <div className="sneakers">
-        {items.map((items, index) => (
+        {favorites.map((items, index) => (
           <Card
             key={index} //лучше key или более уникальные значения из перебора массива
             favorited={true}
-            onClickFavoriteItems={onAddtoFavorite}
+            onFavorite={onAddtoFavorite}
             {...items}
           />
         ))}

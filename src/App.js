@@ -11,8 +11,6 @@ import Favorites from "./pages/Favorites";
 
 // поменял порт запуска на 3006
 
-export const AppContext = React.createContext({});
-
 function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -44,21 +42,39 @@ function App() {
     fetchData();
   }, []);
 
-  const onAddtoCard = (obj) => {
+  const onAddtoCard = async (obj) => {
     try {
-      if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-        axios.delete(
-          `https://637895780992902a251de4f4.mockapi.io/cart/${obj.id}`
-        );
+      const findItem = cartItems.find(
+        (item) => Number(item.parentId) === Number(obj.id)
+      );
+      if (findItem) {
         setCartItems((prev) =>
-          prev.filter((item) => Number(item.id) === Number(obj.id))
+          prev.filter((item) => Number(item.parentId) !== Number(obj.id))
+        );
+        await axios.delete(
+          `https://637895780992902a251de4f4.mockapi.io/cart/${findItem.id}`
         );
       } else {
-        axios.post("https://637895780992902a251de4f4.mockapi.io/cart", obj);
         setCartItems((prev) => [...prev, obj]);
+        const { data } = await axios.post(
+          "https://637895780992902a251de4f4.mockapi.io/cart",
+          obj
+        );
+        setCartItems((prev) =>
+          prev.map((item) => {
+            if (item.parentId === data.parentId) {
+              return {
+                ...item,
+                id: data.id,
+              };
+            }
+            return item;
+          })
+        );
       }
     } catch (error) {
-      alert("не удалось добавить");
+      alert("Ошибка при добавлении в корзину");
+      console.error(error);
     }
   };
 
@@ -94,14 +110,14 @@ function App() {
   };
 
   const isItemAdded = (id) => {
-    return cartItems.some((obj) => Number(obj.id) === Number(items.id));
+    return cartItems.some((obj) => Number(obj.parentId) === Number(id));
   };
 
   return (
     <AppContext.Provider
       value={{
         items,
-        cartIterms,
+        cartItems,
         favorites,
         isItemAdded,
         onAddToFavorite,
@@ -134,9 +150,11 @@ function App() {
           />
         </Route>
 
-        <Route path="/favorites" exact>
-          <Favorites onAddtoFavorite={onAddtoFavorite} />
+        <Route path="/favorite" exact>
+          <Favorites />
         </Route>
+
+        <Route path="orders" exact></Route>
       </div>
     </AppContext.Provider>
   );

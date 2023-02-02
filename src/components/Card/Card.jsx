@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import ContentLoader from "react-content-loader";
 
-import { AppContext } from "../../App";
+import AppContext from "../../context";
 
 import cssCard from "./Card.module.scss";
 
@@ -23,7 +23,7 @@ function Card({
     setIsAdded(!isItemAdded);
   };
 
-  const onClickFavoriteItems = () => {
+  const onClickFavorite = () => {
     onFavorite({ id, imageUrl, title, price });
     setIsFavorite(!isFavorite);
   };
@@ -48,7 +48,7 @@ function Card({
         </ContentLoader>
       ) : (
         <>
-          <div className={cssCard.favorite} onClick={onClickFavoriteItems}>
+          <div className={cssCard.favorite} onClick={onClickFavorite}>
             <img
               src={
                 isFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"

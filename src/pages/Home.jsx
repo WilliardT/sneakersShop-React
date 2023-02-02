@@ -1,9 +1,9 @@
 import React from "react";
+
 import Card from "../components/Card/Card";
 
 function Home({
   items,
-  cartItems,
   searchValue,
   setSearchValue,
   onChangeSearchInput,
@@ -12,17 +12,16 @@ function Home({
   isLoading,
 }) {
   const renderItems = () => {
-    const filtredItems = items.filter((items) =>
-      items.title.toLowerCase().includes(searchValue.toLowerCase())
+    const filtredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
     );
-    return (isLoading ? [...Array(8)] : filtredItems).map((items, index) => (
+    return (isLoading ? [...Array(8)] : filtredItems).map((item, index) => (
       <Card
-        key={index} //лучше key или более уникальные значения из перебора массива
+        key={index}
         onAddtoFavorite={(obj) => onAddtoFavorite(obj)}
         onPlus={(obj) => onAddtoCard(obj)}
-        added={isItemAdded(items && items.id)}
-        {...items}
         loading={isLoading}
+        {...item}
       />
     ));
   };
@@ -30,7 +29,9 @@ function Home({
   return (
     <div className="content">
       <div className="searchBlockWrapper">
-        <h1>{searchValue ? `Поиск: "${searchValue}"` : "Все кроссовки"}</h1>
+        <h1>
+          {searchValue ? `Поиск по запросу: "${searchValue}"` : "Все кроссовки"}
+        </h1>
         <div className="searchBlock">
           <img src="/img/search.svg" alt="search" />
           {searchValue && (
@@ -44,7 +45,7 @@ function Home({
           <input
             onChange={onChangeSearchInput}
             value={searchValue}
-            placeholder="найти..."
+            placeholder="поиск..."
           />
         </div>
       </div>

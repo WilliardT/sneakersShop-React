@@ -17,10 +17,10 @@ function Card({
 }) {
   const { isItemAdded } = useContext(AppContext);
   const [isFavorite, setIsFavorite] = useState(favorited);
+  const obj = { id, parentId: id, title, imageUrl, price };
 
   const onClickPlus = () => {
-    onPlus({ id, imageUrl, title, price });
-    setIsAdded(!isItemAdded);
+    onPlus(obj);
   };
 
   const onClickFavorite = () => {
@@ -38,7 +38,6 @@ function Card({
           viewBox="0 0 150 265"
           backgroundColor="#f3f3f3"
           foregroundColor="#ecebeb"
-          {...props}
         >
           <rect x="0" y="0" rx="10" ry="10" width="150" height="155" />
           <rect x="0" y="168" rx="5" ry="5" width="150" height="15" />
@@ -65,9 +64,9 @@ function Card({
             </div>
             <button className={cssCard.button}>
               <img
-                className={styles.plus}
+                className={cssCard.plus}
                 onClick={onClickPlus}
-                src={isItemAdded ? "/img/btn-chaked.svg" : "/img/plus.svg"}
+                src={isItemAdded(id) ? "/img/btn-chaked.svg" : "/img/plus.svg"}
                 alt="plus"
               />
             </button>

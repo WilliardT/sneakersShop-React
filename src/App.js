@@ -10,7 +10,6 @@ import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders";
 
-// поменял порт запуска на 3006
 
 function App() {
   const [items, setItems] = useState([]);

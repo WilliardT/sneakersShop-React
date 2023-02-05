@@ -6,12 +6,12 @@ const Info = ({ title, image, description }) => {
 
   return (
     <div className="cartEmpty">
-      <img className="" width="120px" src={image} alt="Empty" />
+      <img className="element" width="120px" src={image} alt="Empty" />
       <h2>{title}</h2>
-      <p className="">{description}</p>
+      <p className="elementP">{description}</p>
       <button onClick={() => setCartOpened(false)} className="greenButton">
         <img src="img/arrow.svg" alt="Arrow" />
-        Вернуться назад
+        назад
       </button>
     </div>
   );

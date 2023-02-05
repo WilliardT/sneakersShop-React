@@ -34,7 +34,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
   };
 
   return (
-    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ""}`}>
       <div className={styles.drawer}>
         <h2 className="rightMenuHead">
           Корзина:
@@ -47,41 +47,49 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
         </h2>
 
         {items.length > 0 ? (
-          <div className="items">
-            {items.map((obj) => (
-              <div key={obj.id} className="cartItem">
-                <img className="pic" src={obj.imageUrl} alt="sneakers" />
-                <div className="picInfo">
-                  <p>{obj.title}</p>
-                  <b>{obj.price}руб.</b>
+          <div className="itemsWrapper">
+            <div className="items">
+              {items.map((obj) => (
+                <div key={obj.id} className="cartItem">
+                  <img
+                    className="cartItemImg"
+                    src={obj.imageUrl}
+                    alt="sneakers"
+                  />
+                  <div className="picInfo">
+                    <p>{obj.title}</p>
+                    <b>{obj.price}руб.</b>
+                  </div>
+                  <img
+                    onClick={() => onRemove(obj.id)}
+                    className="removeBtn"
+                    src="/img/btn-remove.svg"
+                    alt="remove"
+                  />
                 </div>
-                <img
-                  onClick={() => onRemove(obj.id)}
-                  className="removeBtn"
-                  src="/img/btn-remove.svg"
-                  alt="remove"
-                />
-              </div>
-            ))}
-            <div className="cartTotalBlock">
-              <li className="total">
-                <span>Итого:</span>
-                <div></div>
-                <b>{totalPrice} руб.</b>
-              </li>
-              <li className="total">
-                <span>Налог:</span>
-                <div></div>
-                <b>{(totalPrice / 100) * 5} руб.</b>
-              </li>
+              ))}
             </div>
-            <button
-              disabled={isLoading}
-              className="greenButton"
-              onClick={onClickOrder}
-            >
-              Оформить заказ
-            </button>
+            <div className="cartTotalBlock">
+              <ul>
+                <li>
+                  <span>Итого:</span>
+                  <div></div>
+                  <b>{totalPrice} руб.</b>
+                </li>
+                <li>
+                  <span>Налог:</span>
+                  <div></div>
+                  <b>{(totalPrice / 100) * 5} руб.</b>
+                </li>
+              </ul>
+              <button
+                disabled={isLoading}
+                className="greenButton"
+                onClick={onClickOrder}
+              >
+                Оформить заказ
+              </button>
+            </div>
           </div>
         ) : (
           <Info
@@ -92,7 +100,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                 : "Добавьте хотя бы одну пару кроссовок чтобы сделать заказ"
             }
             image={
-              isOrderComplete ? "img/complete-order.jpg" : "img/empty-cart.jpg"
+              isOrderComplete ? "img/complete-order.jpg" : "img/emptyCart.png"
             }
           />
         )}

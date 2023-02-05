@@ -24,7 +24,7 @@ function Card({
   };
 
   const onClickFavorite = () => {
-    onFavorite({ id, imageUrl, title, price });
+    onFavorite(obj);
     setIsFavorite(!isFavorite);
   };
 

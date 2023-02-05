@@ -44,6 +44,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 40px;
+  border-bottom: 1px solid #eaeaea;
 
   .headerLeft {
     display: flex;
@@ -115,8 +116,139 @@ header {
   flex-wrap: wrap;
 }
 
+.cartTotalBlock {
+  ul {
+    display: block;
+    margin-bottom: 40px !important;
+  }
+  li {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    div {
+      flex: 1;
+      height: 1px;
+      border-bottom: 1px dashed #dfdfdf;
+      position: relative;
+      top: -4px;
+      margin: 0 7px;
+    }
+  }
+}
+
+.cartEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  p {
+    width: 280px;
+    line-height: 24px;
+  }
+
+  img {
+    margin-bottom: 30px;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.rightMenuHead {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  img {
+    cursor: pointer;
+  }
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+
+  border: 1px solid #f3f3f3;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 20px;
+  margin: 5px 5px;
+
+  .element {
+    margin-bottom: 20px;
+  }
+
+  .elementP {
+    opacity: 0.6;
+  }
+
+  .cartItemImg {
+    height: 70px;
+    width: 70px;
+    background-size: contain;
+    background-position: 0 -3px;
+    background-repeat: no-repeat;
+    margin-right: 20px;
+  }
+
+  .picInfo {
+    margin-bottom: 5px;
+    p {
+      margin: 2px;
+    }
+  }
+
+  .removeBtn {
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.15s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.greenButton {
+  width: 245px;
+  margin-top: 20px;
+  height: 10%;
+  background-color: #9dd558;
+  border-radius: 8px;
+  border: 0;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
 
 
+  img {
+    position: relative;
+    top: 1px;
+    transform: rotate(180deg);
+    margin-right: 15px;
+    transition: transform 0.15s ease-in-out;
+    width: auto;
+    height: auto;
+  }
+
+  :hover {
+    img {
+      transform: rotate(180deg) translateX(3px);
+    }
+  }
+
+  :disabled {
+    background-color: #bebebe !important;
+    cursor: default;
+    animation: button-loading 0.2s ease-in-out;
+  }
+}
 
 .clear {
   position: absolute;

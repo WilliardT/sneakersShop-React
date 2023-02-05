@@ -2,6 +2,7 @@
   "name": "snshop",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://williardt.github.io/sneakersShop-React",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -13,7 +14,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "(set PORT=3006 || export PORT=3006) && react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -40,7 +40,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
           Корзина:
           <img
             className="removeBtn"
-            src="/img/btn-remove.svg"
+            src="img/btn-remove.svg"
             alt="Close"
             onClick={onClose}
           />
@@ -63,7 +63,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                   <img
                     onClick={() => onRemove(obj.id)}
                     className="removeBtn"
-                    src="/img/btn-remove.svg"
+                    src="img/btn-remove.svg"
                     alt="remove"
                   />
                 </div>

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Header from "./components/Header";
-import Drawer from "./components/Drawer";
+import Drawer from "./components/Drawer/Drawer";
 import "./index.scss";
 import AppContext from "./context";
 
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import Orders from "./pages/Orders";
 
 // поменял порт запуска на 3006
 
@@ -126,7 +127,7 @@ function App() {
         setCartItems,
       }}
     >
-      <div className="wrapper clear">
+      <div className="wrapper ">
         <Drawer
           items={cartItems}
           onClose={() => setCartOpened(false)}
@@ -137,27 +138,31 @@ function App() {
         <Header onClickCart={() => setCartOpened(true)} />
 
         <Routes>
-          <Route path="" exact>
-            <Home
-              items={items}
-              cartItems={cartItems}
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
-              onChangeSearchInput={onChangeSearchInput}
-              onAddtoFavorite={onAddtoFavorite}
-              onAddtoCard={onAddtoCard}
-              isLoading={isLoading}
-            />
-          </Route>
+          <Route
+            path=""
+            exact
+            element={
+              <Home
+                items={items}
+                cartItems={cartItems}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+                onChangeSearchInput={onChangeSearchInput}
+                onAddtoFavorite={onAddtoFavorite}
+                onAddtoCard={onAddtoCard}
+                isLoading={isLoading}
+              />
+            }
+          />
         </Routes>
 
         <Routes>
-          <Route path="/favorite" exact>
-            <Favorites />
-          </Route>
+          <Route path="/favorite" exact element={<Favorites />} />
         </Routes>
 
-        {/* <Route path="orders" exact></Route> */}
+        <Routes>
+          <Route path="/orders" exact element={<Orders />} />
+        </Routes>
       </div>
     </AppContext.Provider>
   );

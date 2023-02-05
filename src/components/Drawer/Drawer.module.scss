@@ -1,0 +1,130 @@
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  visibility: hidden;
+}
+
+.overlayVisible {
+  visibility: visible;
+}
+
+.drawer {
+  position: absolute;
+  width: 420px;
+  height: 100%;
+  right: 0;
+  background: #ffffff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .cartEmpty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    p {
+      width: 280px;
+      line-height: 24px;
+    }
+
+    img {
+      margin-bottom: 30px;
+      width: 120px;
+      height: 120px;
+    }
+  }
+  .rightMenuHead {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    img {
+      cursor: pointer;
+    }
+  }
+  .cartItem {
+    display: flex;
+    align-items: center;
+    border: 1px solid #f3f3f3;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0 10px;
+    margin-bottom: 10px;
+
+    .pic {
+      width: 70px;
+      height: 70px;
+      margin-right: 15px;
+    }
+    .picInfo {
+      margin-bottom: 5px;
+      p {
+        margin: 2px;
+      }
+    }
+    .removeBtn {
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.15s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  .cartTotalBlock {
+    .total {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 10px;
+      div {
+        flex: 1;
+        height: 1px;
+        border-bottom: 1px dashed #dfdfdf;
+        position: relative;
+        top: -4px;
+        margin: 0 7px;
+      }
+    }
+  }
+
+  .greenButton {
+    width: 245px;
+    margin-top: 20px;
+    height: 10%;
+    background-color: #9dd558;
+    border-radius: 8px;
+    border: 0;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+
+    :hover {
+      transform: rotate(180deg) translateX(3px);
+    }
+
+    :disabled {
+      background-color: #bebebe !important;
+      cursor: default;
+      animation: button-loading 0.2s ease-in-out;
+    }
+  }
+}

@@ -13,7 +13,7 @@ function Favorites() {
       <div className="sneakers">
         {favorites.map((items, index) => (
           <Card
-            key={index} //лучше key или более уникальные значения из перебора массива
+            key={index}
             favorited={true}
             onFavorite={onAddtoFavorite}
             {...items}

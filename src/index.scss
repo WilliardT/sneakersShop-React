@@ -79,32 +79,37 @@ header {
     span {
       cursor: pointer;
       margin: 0.7em;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
   }
 }
 
 .content {
   padding: 40px;
+
   .searchBlockWrapper {
     display: flex;
     align-items: center;
     margin-bottom: 40px;
     justify-content: space-between;
+
     .searchBlock {
       border: 1px solid #f3f3f3;
       display: flex;
       border-radius: 6px;
       padding: 0 15px;
+
       input {
         border: 0;
         padding: 13px;
         font-size: 16px;
       }
+
       .clearInput {
         height: 20px;
         width: 20px;
         position: absolute;
+
         cursor: pointer;
         margin-top: 14px;
       }
@@ -115,6 +120,7 @@ header {
 .sneakers {
   display: flex;
   flex-wrap: wrap;
+
 }
 
 .cartTotalBlock {

@@ -29,7 +29,7 @@ function Card({
   };
 
   return (
-    <div className={cssCard.card}>
+    <div className={cssCard.card} >
       {loading ? (
         <ContentLoader
           speed={2}

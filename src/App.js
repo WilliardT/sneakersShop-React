@@ -27,7 +27,6 @@ function App() {
             axios.get("https://637895780992902a251de4f4.mockapi.io/favorite"),
             axios.get("https://637895780992902a251de4f4.mockapi.io/items"),
           ]);
-
         setIsLoading(false);
         setCartItems(cartResponse.data);
         setFavorites(favoriteResponse.data);
@@ -144,7 +143,7 @@ function App() {
 
         <Routes>
           <Route
-            path=""
+            path="/"
             exact
             element={
               <Home
@@ -162,11 +161,11 @@ function App() {
         </Routes>
 
         <Routes>
-          <Route path="favorite" exact element={<Favorites />} />
+          <Route path="favorite/" exact element={<Favorites />} />
         </Routes>
 
         <Routes>
-          <Route path="orders" exact element={<Orders />} />
+          <Route path="orders/" exact element={<Orders />} />
         </Routes>
       </div>
     </AppContext.Provider>

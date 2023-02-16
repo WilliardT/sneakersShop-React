@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { HeartFilled, UserOutlined } from "@ant-design/icons/lib/icons";
+
 function Header(props) {
   const { totalPrice } = useCart();
 
@@ -9,7 +12,12 @@ function Header(props) {
     <header>
       <Link to="/">
         <div className="headerLeft">
-          <img width={40} height={40} src="img/logo.png" alt="logotype" />
+          <img
+            width={50}
+            height={70}
+            src="https://www.tsum.ru/static/media/logo.047b4fb0.svg"
+            alt="logotype"
+          />
           <div className="headerInfo">
             <h3>sneakers shop</h3>
             <p>магазин наилучших кроссовок</p>
@@ -18,22 +26,19 @@ function Header(props) {
       </Link>
       <ul className="headerRight">
         <li onClick={props.onClickCart}>
-          <img width={18} height={18} src="img/cart.svg" alt="корзина" />
+          <ShoppingCartOutlined
+            alt="корзина"
+          />
           <span>{totalPrice} руб.</span>
         </li>
         <li>
           <Link to="/favorite">
-            <img
-              width={18}
-              height={18}
-              src="img/likeFavorites.svg"
-              alt="закладки"
-            />
+            <HeartFilled alt="закладки"/>
           </Link>
         </li>
         <li>
           <Link to="/orders">
-            <img width={18} height={18} src="img/user.svg" alt="Пользователь" />
+            <UserOutlined alt="Пользователь"/>
           </Link>
         </li>
       </ul>

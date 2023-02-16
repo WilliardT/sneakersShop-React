@@ -40,8 +40,8 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
           Корзина:
           <img
             className="removeBtn"
-            src="img/btn-remove.svg"
-            alt="Close"
+            src="/snshop/public/img/btn-remove.svg"
+            alt="закрыть"
             onClick={onClose}
           />
         </h2>
@@ -63,7 +63,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
                   <img
                     onClick={() => onRemove(obj.id)}
                     className="removeBtn"
-                    src="img/btn-remove.svg"
+                    src="https://img.icons8.com/ios/256/close-window.png"
                     alt="remove"
                   />
                 </div>
@@ -93,14 +93,14 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
           </div>
         ) : (
           <Info
-            title={isOrderComplete ? "Заказ оформлен" : "Корзина пустая"}
+            title={isOrderComplete ? "Заказ оформлен" : "в Корзине пусто"}
             description={
               isOrderComplete
                 ? `Ваш заказ №${orderId} скоро будет передан курьерской службе`
                 : "Добавьте хотя бы одну пару кроссовок чтобы сделать заказ"
             }
             image={
-              isOrderComplete ? "img/complete-order.jpg" : "img/emptyCart.png"
+              isOrderComplete ? "https://img.icons8.com/external-itim2101-flat-itim2101/256/external-delivery-box-shopping-and-ecommerce-itim2101-flat-itim2101.png" : "https://img.icons8.com/color-glass/256/open-delivered-box.png"
             }
           />
         )}

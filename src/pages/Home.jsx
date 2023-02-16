@@ -2,6 +2,8 @@ import React from "react";
 
 import Card from "../components/Card/Card";
 
+import { SearchOutlined, CloseOutlined } from '@ant-design/icons'
+
 function Home({
   items,
   searchValue,
@@ -33,14 +35,11 @@ function Home({
           {searchValue ? `Поиск по запросу: "${searchValue}"` : "Все кроссовки"}
         </h1>
         <div className="searchBlock">
-          <img src="img/search.svg" alt="search" />
+          {
+            !searchValue && <SearchOutlined />
+          }
           {searchValue && (
-            <img
-              onClick={() => setSearchValue("")}
-              className="clearInput"
-              src="img/btn-remove.svg"
-              alt="clearInput"
-            />
+            <CloseOutlined onClick={() => setSearchValue("")} />
           )}
           <input
             onChange={onChangeSearchInput}

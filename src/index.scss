@@ -16,7 +16,7 @@ body {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
   border-radius: 10px;
   max-width: 1080px;
-  margin: 50px auto;
+  margin: 5% auto;
   padding: 40px;
 
   * {
@@ -99,6 +99,10 @@ header {
       border-radius: 6px;
       padding: 0 15px;
 
+      svg {
+        margin-top: 100%;
+      }
+
       input {
         border: 0;
         padding: 13px;
@@ -121,6 +125,11 @@ header {
   display: flex;
   flex-wrap: wrap;
 
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
 }
 
 .cartTotalBlock {
@@ -212,6 +221,7 @@ header {
     opacity: 0.5;
     cursor: pointer;
     transition: opacity 0.15s ease-in-out;
+    width: 10%;
 
     &:hover {
       opacity: 1;
@@ -220,7 +230,7 @@ header {
 }
 
 .greenButton {
-  width: 245px;
+  width: 60%;
   margin-top: 20px;
   height: 10%;
   background-color: #9dd558;

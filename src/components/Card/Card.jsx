@@ -4,6 +4,11 @@ import ContentLoader from "react-content-loader";
 import AppContext from "../../context";
 
 import cssCard from "./Card.module.scss";
+import {
+  HeartOutlined,
+  HeartFilled,
+  PlusCircleTwoTone,
+} from "@ant-design/icons/lib/icons";
 
 function Card({
   id,
@@ -29,7 +34,7 @@ function Card({
   };
 
   return (
-    <div className={cssCard.card} >
+    <div className={cssCard.card}>
       {loading ? (
         <ContentLoader
           speed={2}
@@ -49,27 +54,20 @@ function Card({
         <>
           {onFavorite && (
             <div className={cssCard.favorite} onClick={onClickFavorite}>
-              <img
-                src={
-                  isFavorite ? "img/heart-liked.svg" : "img/heart-unliked.svg"
-                }
-                alt="unliked"
-              />
+              {isFavorite ? <HeartFilled /> : <HeartOutlined />}
             </div>
           )}
-          <img width="100%" height={135} src={imageUrl} alt="sneakers" />
+          <img className="cardImage" src={imageUrl} alt="sneakers" />
           <h5>{title}</h5>
           <div className={cssCard.cardButtom}>
             <div className={cssCard.cardButtomText}>
               <span>цена:</span>
-              <b>{price}руб.</b>
+              <b>{price} руб.</b>
             </div>
             {onPlus && (
-              <img
-                className={cssCard.plus}
+              <PlusCircleTwoTone
+                twoToneColor={isItemAdded(id) ? "#eb2f96" : "#b8b8b8"}
                 onClick={onClickPlus}
-                src={isItemAdded(id) ? "img/btn-chaked.svg" : "img/plus.svg"}
-                alt="plus"
               />
             )}
           </div>
